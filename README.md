@@ -8,6 +8,8 @@ Olá, meu nome é Sergio 👋
 
 # Multi-Agentes-de-IA-Para-Planejamento-de-Viagens
 
+https://multi-agentes.streamlit.app/
+
 
  Multi-Agentes de IA. Ele vai além da simples execução de um modelo, trazendo uma solução completa que integra três ferramentas poderosas.
 O CrewAI, responsável pela colaboração entre agentes; o Groq, que garante alta performance na execução de LLMs; e o Tavily, que conecta a aplicação à web para realizar buscas em tempo real.
