@@ -38,7 +38,7 @@ with st.sidebar:
         
         # Exibe o email de suporte dentro do expander
         st.write("Se tiver dúvidas envie mensagem para sergiolmendes2026@gmail.com")
-           st.markdown(
+        st.markdown(
     """
     <a href="https://wa.me/55SEUNUMERO" target="_blank" 
        style="background-color: #25d366; color: white; padding: 10px 15px; 
