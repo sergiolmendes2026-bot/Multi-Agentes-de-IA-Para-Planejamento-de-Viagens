@@ -11,88 +11,141 @@ Olá, meu nome é Sergio 👋
 https://multi-agentes.streamlit.app/
 
 
+# ✈️ Agente de IA Viagens LM
 
-Agente de IA Viagens LM é um assistente inteligente para planejamento de viagens baseado em múltiplos agentes de IA (Multi-Agentes). Em vez de apenas responder perguntas, ele coleta as informações da viagem e gera um roteiro personalizado.
+O **Agente de IA Viagens LM** é um assistente inteligente para planejamento de viagens baseado em uma arquitetura de **Múltiplos Agentes de IA (Multi-Agentes)**. Em vez de apenas responder perguntas, a aplicação coleta as informações da viagem e gera um roteiro personalizado de acordo com o perfil e os interesses do usuário.
 
-As funções que ele aparenta ter são:
+---
 
-✈️ 1. Planejamento do roteiro
+## 🚀 Funcionalidades
+
+### ✈️ Planejamento Inteligente de Roteiros
 
 O usuário informa:
 
-Cidade ou país de destino (ex.: Paris, França);
-Quantidade de dias;
-Interesses (museus, gastronomia, natureza, compras, etc.).
----------------------------------------------------------------------------------------------
+- 🌍 Cidade ou país de destino (ex.: Paris, França);
+- 📅 Quantidade de dias da viagem;
+- ❤️ Interesses pessoais (museus, gastronomia, natureza, compras, entre outros).
 
-Com isso, o agente monta um roteiro dia a dia.
+Com base nessas informações, o sistema gera um roteiro personalizado organizado por dia.
 
-🧠 2. Uso de múltiplos agentes de IA
+---
 
-A ideia de "Multi-Agentes" significa que diferentes IAs podem trabalhar em conjunto, por exemplo:
+## 🧠 Arquitetura Multi-Agentes
 
-Agente Planejador
-Organiza o cronograma da viagem.
-Agente Turístico
-Sugere atrações famosas e locais menos conhecidos.
-Agente Gastronômico
-Recomenda restaurantes e comidas típicas.
-Agente Logístico
-Calcula deslocamentos entre os pontos turísticos.
-Agente Financeiro
-Estima gastos da viagem.
+A aplicação utiliza diferentes agentes especializados que trabalham em conjunto para oferecer um planejamento mais completo.
 
-Cada agente é especializado em uma tarefa e depois as respostas são combinadas.
+### 📋 Agente Planejador
+Responsável por organizar o cronograma da viagem e distribuir as atividades ao longo dos dias.
 
-📅 3. Criação automática do roteiro
+### 🗺️ Agente Turístico
+Sugere atrações famosas, pontos turísticos e locais menos conhecidos.
 
-Exemplo para Paris em 3 dias:
+### 🍽️ Agente Gastronômico
+Recomenda restaurantes, cafeterias e pratos típicos da região.
 
-Dia 1
+### 🚆 Agente Logístico
+Calcula deslocamentos entre os pontos turísticos e organiza a melhor sequência de visitas.
 
-Torre Eiffel
-Rio Sena
-Museu do Louvre
+### 💰 Agente Financeiro
+Estima os custos da viagem considerando alimentação, transporte e passeios.
 
-Dia 2
+Todos esses agentes colaboram para gerar um roteiro mais completo e personalizado.
 
-Catedral de Notre-Dame
-Bairro Latino
-Café tradicional francês
+---
 
-Dia 3
+## 📅 Exemplo de Roteiro
 
-Palácio de Versalhes
-Jardim de Luxemburgo
-Compras na Champs-Élysées
-🌍 4. Personalização
+### 📍 Destino: Paris, França (3 dias)
 
-Dependendo do interesse informado, o roteiro muda.
+### Dia 1
+- Torre Eiffel
+- Passeio pelo Rio Sena
+- Museu do Louvre
 
-Se o usuário escrever:
+### Dia 2
+- Catedral de Notre-Dame
+- Bairro Latino
+- Café tradicional francês
 
-"Natureza e trilhas"
+### Dia 3
+- Palácio de Versalhes
+- Jardim de Luxemburgo
+- Compras na Champs-Élysées
 
-O roteiro prioriza parques e áreas verdes.
+---
 
-Se escrever:
+## 🌍 Personalização
 
-"Compras"
+O roteiro é adaptado conforme os interesses informados pelo usuário.
 
-Ele prioriza shoppings, outlets e ruas comerciais.
+### Exemplo 1
 
-🔑 5. Uso das APIs
+**Interesse:**
 
-Na lateral da aplicação aparecem:
+> Natureza e trilhas
 
-Groq API Key
-Responsável por executar o modelo de linguagem (LLM), gerando o texto do roteiro.
-Tavily API Key
-Permite pesquisar informações atualizadas na internet, como atrações, horários e recomendações.
-📱 6. Suporte integrado
+**Resultado:**
 
-Também há:
+- Parques
+- Jardins
+- Trilhas
+- Áreas verdes
 
-botão de contato por e-mail;
-botão para WhatsApp;
-aviso de que as respostas da IA devem ser verificadas.
+### Exemplo 2
+
+**Interesse:**
+
+> Compras
+
+**Resultado:**
+
+- Shoppings
+- Outlets
+- Ruas comerciais
+- Centros de compras
+
+---
+
+## 🔑 APIs Utilizadas
+
+### Groq API
+
+Responsável por executar o Modelo de Linguagem (LLM), gerando respostas rápidas e inteligentes para criação do roteiro.
+
+### Tavily API
+
+Realiza pesquisas na web para obter informações atualizadas sobre:
+
+- atrações turísticas;
+- horários de funcionamento;
+- recomendações de locais;
+- informações relevantes sobre o destino.
+
+---
+
+## 📱 Suporte Integrado
+
+A aplicação também oferece:
+
+- 📧 Contato por e-mail;
+- 💬 Atendimento via WhatsApp;
+- ⚠️ Aviso para que o usuário verifique informações importantes antes de seguir o roteiro gerado pela IA.
+
+---
+
+## 💡 Tecnologias Utilizadas
+
+- Python
+- Streamlit
+- LangChain
+- Groq API
+- Tavily API
+- Multi-Agent Architecture
+- Large Language Models (LLMs)
+
+---
+
+## 🎯 Objetivo
+
+O objetivo deste projeto é demonstrar a aplicação de Inteligência Artificial Generativa utilizando uma arquitetura de múltiplos agentes para automatizar o planejamento de viagens, fornecendo roteiros personalizados, organizados e adaptados às preferências de cada usuário.
