@@ -6,7 +6,6 @@ Olá, meu nome é Sergio 👋
 • 🤔 Estou buscando ajuda com boas práticas de deploy em nuvem.
 • 📫 Como me encontrar: sergiolmendes2026@gmail.com
 
-# Multi-Agentes-de-IA-Para-Planejamento-de-Viagens
 
 https://multi-agentes.streamlit.app/
 
