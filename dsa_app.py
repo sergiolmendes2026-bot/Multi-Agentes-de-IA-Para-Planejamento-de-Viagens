@@ -301,29 +301,28 @@ if start_button:
             # Orienta validações básicas de causa provável
             st.error("Confirme as chaves de API e a versão dos pacotes.")
 
-# Se o roteiro foi gerado com sucesso, exibe o chat logo abaixo de forma organizada
+# Bloco único para salvar o roteiro e ativar o chat interativo
 if "roteiro_gerado" in st.session_state:
     st.divider()
     st.markdown("### 💬 Chat com Agente de IA para Dúvidas sobre o Roteiro")
     st.info("O agente de IA leu seu roteiro e está pronto para responder perguntas específicas sobre ele!")
 
-    # Inicializa o histórico de mensagens da conversa se não existir
+    # Inicializa o histórico de mensagens
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
-    # Exibe as mensagens anteriores do chat
+    # Exibe as mensagens anteriores
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
     # Entrada de chat na parte inferior
-    if prompt := st.chat_input("Ex: Qual o melhor dia para ir ao museu? Ou me dê dicas de transporte..."):
-        # Adiciona a pergunta do usuário no histórico
+    if prompt := st.chat_input("Digite sua mensagem para o agente..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
-        # Resposta inteligente do Agente usando o Groq baseada no roteiro gerado
+        # Resposta inteligente do Agente baseada no roteiro gerado
         with st.chat_message("assistant"):
             with st.spinner("O assistente está analisando sua dúvida..."):
                 try:
@@ -353,7 +352,6 @@ if "roteiro_gerado" in st.session_state:
                     ai_response = chat_crew.kickoff()
                     st.markdown(ai_response)
                     
-                    # Salva a resposta da IA no histórico
                     st.session_state.messages.append({"role": "assistant", "content": str(ai_response)})
                 
                 except Exception as chat_error:
