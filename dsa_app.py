@@ -301,29 +301,65 @@ if start_button:
             # Orienta validações básicas de causa provável
             st.error("Confirme as chaves de API e a versão dos pacotes.")
 
+# Se o roteiro foi gerado com sucesso, exibe o chat logo abaixo de forma organizada
+if "roteiro_gerado" in st.session_state:
+    st.divider()
+    st.markdown("### 💬 Chat com Agente de IA para Dúvidas sobre o Roteiro")
+    st.info("O agente de IA leu seu roteiro e está pronto para responder perguntas específicas sobre ele!")
 
-st.title("Chat com Agente de IA")
+    # Inicializa o histórico de mensagens da conversa se não existir
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
 
-# Inicializa o histórico de mensagens
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+    # Exibe as mensagens anteriores do chat
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
-# Exibe as mensagens anteriores
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    # Entrada de chat na parte inferior
+    if prompt := st.chat_input("Ex: Qual o melhor dia para ir ao museu? Ou me dê dicas de transporte..."):
+        # Adiciona a pergunta do usuário no histórico
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
 
-# Entrada de chat na parte inferior (similar a um chat moderno)
-if prompt := st.chat_input("Digite sua mensagem para o agente..."):
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    # Resposta do Agente
-    response = f"Ecoando sua mensagem: {prompt}"
-    with st.chat_message("assistant"):
-        st.markdown(response)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+        # Resposta inteligente do Agente usando o Groq baseada no roteiro gerado
+        with st.chat_message("assistant"):
+            with st.spinner("O assistente está analisando sua dúvida..."):
+                try:
+                    chat_llm = LLM(model="groq/llama-3.3-70b-versatile", api_key=groq_api_key)
+                    
+                    chat_agent = Agent(
+                        role="Assistente de Viagem Inteligente",
+                        goal=f"Responder dúvidas do usuário com base exclusiva no roteiro gerado.",
+                        backstory="Você é um assistente prestativo especialista em viagens.",
+                        llm=chat_llm,
+                        verbose=False
+                    )
+                    
+                    chat_task = Task(
+                        description=f"Roteiro da viagem:\n{st.session_state['roteiro_gerado']}\n\nDúvida do usuário: {prompt}",
+                        expected_output="Resposta clara e útil em Markdown.",
+                        agent=chat_agent
+                    )
+                    
+                    chat_crew = Crew(
+                        agents=[chat_agent],
+                        tasks=[chat_task],
+                        process=Process.sequential,
+                        verbose=0
+                    )
+                    
+                    ai_response = chat_crew.kickoff()
+                    st.markdown(ai_response)
+                    
+                    # Salva a resposta da IA no histórico
+                    st.session_state.messages.append({"role": "assistant", "content": str(ai_response)})
+                
+                except Exception as chat_error:
+                    error_message = f"Não foi possível gerar a resposta: {chat_error}"
+                    st.error(error_message)
+                    st.session_state.messages.append({"role": "assistant", "content": error_message})
 
 
 
