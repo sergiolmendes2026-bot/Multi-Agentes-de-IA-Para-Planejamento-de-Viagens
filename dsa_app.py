@@ -293,6 +293,30 @@ if start_button:
 
         # Captura qualquer erro e exibe na interface
         except Exception as e:
+
+
+st.title("Chat com Agente de IA")
+
+# Inicializa o histórico de mensagens
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Exibe as mensagens anteriores
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Entrada de chat na parte inferior (similar a um chat moderno)
+if prompt := st.chat_input("Digite sua mensagem para o agente..."):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
+
+    # Resposta do Agente (aqui entram os seus multi-agentes)
+    response = f"Ecoando sua mensagem: {prompt}"
+    with st.chat_message("assistant"):
+        st.markdown(response)
+    st.session_state.messages.append({"role": "assistant", "content": response})
             
             # Mostra mensagem genérica de erro com detalhes
             st.error(f"Ocorreu um erro ao gerar o roteiro: {e}")
