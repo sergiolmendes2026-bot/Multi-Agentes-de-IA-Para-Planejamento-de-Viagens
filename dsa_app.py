@@ -291,6 +291,8 @@ if start_button:
                 # Renderiza o roteiro em Markdown na interface
                 st.markdown(result)
 
+                st.session_state["roteiro_gerado"] = result
+
         # Captura qualquer erro e exibe na interface
         except Exception as e:
 
