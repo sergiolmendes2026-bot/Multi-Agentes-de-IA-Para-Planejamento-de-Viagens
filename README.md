@@ -7,8 +7,9 @@ Olá, meu nome é Sergio 👋
 • 📫 Como me encontrar: sergiolmendes2026@gmail.com
 
 
-https://multi-agentes.streamlit.app/
+Deploy realizado no Streamlit Community Cloud.
 
+https://multi-agentes.streamlit.app/
 
 # ✈️ Agente de IA Viagens LM
 
