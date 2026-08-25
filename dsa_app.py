@@ -110,7 +110,7 @@ with st.sidebar:
     tavily_api_key = st.text_input("Tavily API Key", type="password", help="Chave tvly_...")
     
     st.divider()
-    st.markdown("### 📄 Documentação Clíenica")
+    st.markdown("### 📄 Documentação Clínica")
     st.caption("Desenvolvido por: Sergio Luiz Brito")
     st.caption("Versão do Core: Enterprise v2.4 (CrewAI)")
 
@@ -227,5 +227,7 @@ with tab_new:
                     llm=llm, tools=[search_tool], allow_delegation=False, verbose=False
                 )
 
+                s2.markdown("✅ Agente de Hospedagem: Concluído.")
+                s3.markdown("🔄 Agente Financeiro: Processando dados da carteira...")
+
                 agente_financeiro = Agent(
-                    role="Auditor e Analista de Custos de Viagem",
